@@ -3,7 +3,7 @@
 namespace AriaNet.Response
 {
     [JsonObject]
-    public class CommonResponse
+    public class AriaCommonResponse
     {
         [JsonProperty("id")]
         public string Id { get; set; }
