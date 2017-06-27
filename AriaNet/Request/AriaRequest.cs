@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace AriaNet.Response
+namespace AriaNet.Request
 {
     [JsonObject]
     public class AriaRequest
@@ -14,7 +14,7 @@ namespace AriaNet.Response
         [JsonProperty("method")]
         public string Method { get; set; }
         
-        [JsonProperty("params")]
+        [JsonProperty(PropertyName = "params", NullValueHandling = NullValueHandling.Ignore)]
         public object Parameters { get; set; }
     }
 }
