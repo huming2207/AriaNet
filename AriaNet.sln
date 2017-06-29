@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.0.0
-MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriaNet", "AriaNet/AriaNet.csproj", "{F9DB1CEF-7A4B-4391-A293-47D7249E93C5}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AriaNet", "AriaNet\AriaNet.csproj", "{F9DB1CEF-7A4B-4391-A293-47D7249E93C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriaNetTest", "AriaNetTest\AriaNetTest.csproj", "{03B68E4D-F584-4AD2-B1E1-5426C3F1C866}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F9DB1CEF-7A4B-4391-A293-47D7249E93C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9DB1CEF-7A4B-4391-A293-47D7249E93C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9DB1CEF-7A4B-4391-A293-47D7249E93C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03B68E4D-F584-4AD2-B1E1-5426C3F1C866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B68E4D-F584-4AD2-B1E1-5426C3F1C866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03B68E4D-F584-4AD2-B1E1-5426C3F1C866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03B68E4D-F584-4AD2-B1E1-5426C3F1C866}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
