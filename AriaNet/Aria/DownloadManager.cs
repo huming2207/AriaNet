@@ -80,6 +80,29 @@ namespace AriaNet.Aria
 
             return queryResult;
         }
+
+        private async Task<T> SendCommand<T> (string ariaMethod)
+        {
+            // Declare payload handler
+            var payloadHandler = new PayloadHandler(AriaJsonRpcUri);
+
+            // Generate JSON-RPC request
+            var ariaRequestObject = new AriaRequest()
+            {
+                Id = Guid.NewGuid().ToString(),
+                JsonRpcVersion = "2.0",
+                Method = ariaMethod,
+                Parameters = null
+            };
+
+
+            var ariaRequestString = JsonConvert.SerializeObject(ariaRequestObject);
+
+            // Send to server (aria2 daemon)
+            var queryResult = await payloadHandler.RunPost<T>(ariaRequestString);
+
+            return queryResult;
+        }
         
         public async Task<AriaCommonResponse> AddUri(string uri)
         {
@@ -133,12 +156,12 @@ namespace AriaNet.Aria
         {
             if (forcePauseAll)
             {
-                var result = await SendCommand<string>("aria2.forcePauseAll", "");
+                var result = await SendCommand<string>("aria2.forcePauseAll");
                 return result.Contains("OK");
             }
             else
             {
-                var result = await SendCommand<string>("aria2.pauseAll", "");
+                var result = await SendCommand<string>("aria2.pauseAll");
                 return result.Contains("OK");
             }
         }
@@ -151,7 +174,7 @@ namespace AriaNet.Aria
 
         public async Task<bool> UnpauseAll()
         {
-            var result = await SendCommand<string>("aria2.unpauseAll", "");
+            var result = await SendCommand<string>("aria2.unpauseAll");
             return result.Contains("OK");
         }
 
@@ -163,13 +186,13 @@ namespace AriaNet.Aria
 
         public async Task<AriaStatusResponse> QueryActiveTasks()
         {
-            var result = await SendCommand<AriaStatusResponse>("aria2.tellActive", "");
+            var result = await SendCommand<AriaStatusResponse>("aria2.tellActive");
             return result;
         }
 
         public async Task<AriaStatusResponse> QueryStoppedTasks()
         {
-            var result = await SendCommand<AriaStatusResponse>("aria2.tellStopped", "");
+            var result = await SendCommand<AriaStatusResponse>("aria2.tellStopped");
             return result;
         }
 
@@ -213,7 +236,7 @@ namespace AriaNet.Aria
         
         public async Task<AriaOptionResponse> QueryGlobalOption()
         {
-            var result = await SendCommand<AriaOptionResponse>("aria2.getGlobalOption", "");
+            var result = await SendCommand<AriaOptionResponse>("aria2.getGlobalOption");
             return result;
         }
 
@@ -226,13 +249,13 @@ namespace AriaNet.Aria
 
         public async Task<AriaGlobalStatusResponse> QueryGlobalStatus()
         {
-            var result = await SendCommand<AriaGlobalStatusResponse>("aria2.getGlobalStat","");
+            var result = await SendCommand<AriaGlobalStatusResponse>("aria2.getGlobalStat");
             return result;
         }
 
         public async Task<bool> PurgeDownloadResult()
         {
-            var result = await SendCommand<string>("aria2.purgeDownloadResult", "");
+            var result = await SendCommand<string>("aria2.purgeDownloadResult");
             return result.Contains("OK");
         }
         
@@ -245,14 +268,14 @@ namespace AriaNet.Aria
 
         public async Task<AriaVersionResponse> QueryAriaVersion()
         {
-            var result = await SendCommand<AriaVersionResponse>("aria2.getVersion", "");
+            var result = await SendCommand<AriaVersionResponse>("aria2.getVersion");
             return result;
         }
             
         
         public async Task<AriaSessionResponse> QuerySessionInfo()
         {
-            var result = await SendCommand<AriaSessionResponse>("aria2.getSessionInfo", "");
+            var result = await SendCommand<AriaSessionResponse>("aria2.getSessionInfo");
             return result;
         }
 
@@ -260,19 +283,19 @@ namespace AriaNet.Aria
         {
             if (forceShutdown)
             {
-                var result = await SendCommand<string>("aria2.forceShutdown", "");
+                var result = await SendCommand<string>("aria2.forceShutdown");
                 return result.Contains("OK");
             }
             else
             {
-                var result = await SendCommand<string>("aria2.shutdown", "");
+                var result = await SendCommand<string>("aria2.shutdown");
                 return result.Contains("OK");
             }
         }
 
         public async Task<bool> SaveSession()
         {
-            var result = await SendCommand<string>("aria2.saveSession", "");
+            var result = await SendCommand<string>("aria2.saveSession");
             return result.Contains("OK");
         }
         
