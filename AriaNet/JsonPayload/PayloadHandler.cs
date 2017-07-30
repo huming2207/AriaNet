@@ -35,7 +35,13 @@ namespace AriaNet.JsonPayload
             var postResult = await httpClient.PostAsync(AriaJsonRpcUri, stringContent);
             
             // Have a look at the result...
-            if (postResult.IsSuccessStatusCode)
+            if (postResult.IsSuccessStatusCode && typeof(T) == typeof(string))
+            {
+                // Skip JSON deserialization if not necessary
+                object result = await postResult.Content.ReadAsStringAsync();
+                return (T)Convert.ChangeType(result, typeof(T));
+            }
+            else if (postResult.IsSuccessStatusCode)
             {
                 var jsonObject = JsonConvert.DeserializeObject<T>(
                     await postResult.Content.ReadAsStringAsync());
@@ -50,6 +56,7 @@ namespace AriaNet.JsonPayload
                 return default(T);
             }
         }
+        
         
         
     }
