@@ -1,0 +1,8 @@
+/Users/hu/Projects/AriaNet/ConsoleApplication/bin/Debug/netcoreapp1.1/ConsoleApplication.deps.json
+/Users/hu/Projects/AriaNet/ConsoleApplication/bin/Debug/netcoreapp1.1/ConsoleApplication.runtimeconfig.json
+/Users/hu/Projects/AriaNet/ConsoleApplication/bin/Debug/netcoreapp1.1/ConsoleApplication.runtimeconfig.dev.json
+/Users/hu/Projects/AriaNet/ConsoleApplication/bin/Debug/netcoreapp1.1/ConsoleApplication.dll
+/Users/hu/Projects/AriaNet/ConsoleApplication/bin/Debug/netcoreapp1.1/obj/Debug/netcoreapp1.1/ConsoleApplication.pdb
+/Users/hu/Projects/AriaNet/ConsoleApplication/obj/Debug/netcoreapp1.1/ConsoleApplication.AssemblyInfo.cs
+/Users/hu/Projects/AriaNet/ConsoleApplication/obj/Debug/netcoreapp1.1/ConsoleApplication.dll
+/Users/hu/Projects/AriaNet/ConsoleApplication/obj/Debug/netcoreapp1.1/ConsoleApplication.pdb

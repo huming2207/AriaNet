@@ -1,0 +1,40 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/hu/Projects/AriaNet/ConsoleApplication/ConsoleApplication.csproj",
+    "projectName": "ConsoleApplication",
+    "projectPath": "/Users/hu/Projects/AriaNet/ConsoleApplication/ConsoleApplication.csproj",
+    "outputPath": "/Users/hu/Projects/AriaNet/ConsoleApplication/obj/",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp1.1"
+    ],
+    "frameworks": {
+      "netcoreapp1.1": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "target": "Package",
+          "version": "1.1.2"
+        },
+        "Newtonsoft.Json": {
+          "target": "Package",
+          "version": "10.0.3"
+        },
+        "Spooky": {
+          "target": "Package",
+          "version": "1.0.0.3"
+        },
+        "Spooky.Json20": {
+          "target": "Package",
+          "version": "1.0.0.3"
+        }
+      }
+    }
+  }
+}
