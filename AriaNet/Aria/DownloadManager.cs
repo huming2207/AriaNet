@@ -58,7 +58,7 @@ namespace AriaNet.Aria
             return queryResult;
         }
 
-        private async Task<T> SendCommand<T>(string ariaMethod, object parameterList)
+        private async Task<T> SendCommand<T>(string ariaMethod, AriaOption parameterList)
         {
             // Declare payload handler
             var payloadHandler = new PayloadHandler(AriaJsonRpcUri);
@@ -80,6 +80,30 @@ namespace AriaNet.Aria
 
             return queryResult;
         }
+        
+        private async Task<T> SendCommand<T>(string ariaMethod, List<string> parameterList)
+        {
+            // Declare payload handler
+            var payloadHandler = new PayloadHandler(AriaJsonRpcUri);
+
+            // Generate JSON-RPC request
+            var ariaRequestObject = new AriaRequest()
+            {
+                Id = Guid.NewGuid().ToString(),
+                JsonRpcVersion = "2.0",
+                Method = ariaMethod,
+                Parameters = parameterList
+            };
+
+            
+            var ariaRequestString = JsonConvert.SerializeObject(ariaRequestObject);
+            
+            // Send to server (aria2 daemon)
+            var queryResult = await payloadHandler.RunPost<T>(ariaRequestString);
+
+            return queryResult;
+        }
+
 
         private async Task<T> SendCommand<T> (string ariaMethod)
         {
@@ -106,6 +130,14 @@ namespace AriaNet.Aria
         
         public async Task<AriaCommonResponse> AddUri(string uri)
         {
+            var result = await SendCommand<AriaCommonResponse>("aria2.addUri", uri);
+            return result;
+        }
+        
+        
+        public async Task<AriaCommonResponse> AddUri(string uri, string userAgent, string referrer)
+        {
+            var ariaOption = new AriaOption() {Referer = referrer, UserAgent = userAgent};
             var result = await SendCommand<AriaCommonResponse>("aria2.addUri", uri);
             return result;
         }
@@ -229,7 +261,7 @@ namespace AriaNet.Aria
         public async Task<bool> ChangeOption(string taskId, AriaOption ariaOption)
         {
             // Not sure if it works lol...
-            var parameterList = new List<object> {taskId, ariaOption};
+            var parameterList = new List<string> {taskId, JsonConvert.SerializeObject(ariaOption)};
             var result = await SendCommand<string>("aria2.changeOption", parameterList);
             return result.Contains("OK");
         }
