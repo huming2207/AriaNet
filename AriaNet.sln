@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriaNet", "AriaNet\AriaNet.csproj", "{DA3CE168-A12A-4043-90A3-9F60DE9C5241}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriaNetTest", "AriaNetTest\AriaNetTest.csproj", "{74167230-DD2E-409F-BD34-042E880BE886}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DA3CE168-A12A-4043-90A3-9F60DE9C5241}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA3CE168-A12A-4043-90A3-9F60DE9C5241}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA3CE168-A12A-4043-90A3-9F60DE9C5241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74167230-DD2E-409F-BD34-042E880BE886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74167230-DD2E-409F-BD34-042E880BE886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74167230-DD2E-409F-BD34-042E880BE886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74167230-DD2E-409F-BD34-042E880BE886}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
