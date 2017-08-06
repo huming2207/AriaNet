@@ -7,23 +7,23 @@ using AriaNet.Attributes;
 
 namespace AriaNet
 {
-    public class DownloadManager
+    public class AriaManager
     {
-        private JsonRpcHttpClient SpookyClient;
+        private JsonRpcHttpClient RpcClient;
         
-        public DownloadManager(string rpcUrl = "http://localhost:6800/jsonrpc")
+        public AriaManager(string rpcUrl = "http://localhost:6800/jsonrpc")
         {
-            SpookyClient = new JsonRpcHttpClient(new Uri(rpcUrl));
+            RpcClient = new JsonRpcHttpClient(new Uri(rpcUrl));
         }
         
         public async Task<string> AddUri(List<string> uriList)
         {
-            return await SpookyClient.Invoke<string>("aria2.addUri", uriList);
+            return await RpcClient.Invoke<string>("aria2.addUri", uriList);
         }
 
         public async Task<string> AddUri(List<string> uriList, string userAgent, string referrer)
         {
-            return await SpookyClient.Invoke<string>("aria2.addUri", uriList,
+            return await RpcClient.Invoke<string>("aria2.addUri", uriList,
                 new Dictionary<string, string>
                 {
                     {"user-agent", userAgent},
@@ -34,24 +34,24 @@ namespace AriaNet
         public async Task<string> AddMetaLink(string filePath)
         {
             var metaLinkBase64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
-            return await SpookyClient.Invoke<string>("aria2.addMetalink", metaLinkBase64);
+            return await RpcClient.Invoke<string>("aria2.addMetalink", metaLinkBase64);
         }
         
         public async Task<string> AddTorrent(string filePath)
         {
             var torrentBase64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
-            return await SpookyClient.Invoke<string>("aria2.addTorrent", torrentBase64);
+            return await RpcClient.Invoke<string>("aria2.addTorrent", torrentBase64);
         }
 
         public async Task<string> RemoveTask(string gid, bool forceRemove = false)
         {
             if (!forceRemove)
             {
-                return await SpookyClient.Invoke<string>("aria2.remove", gid);
+                return await RpcClient.Invoke<string>("aria2.remove", gid);
             }
             else
             {
-                return await SpookyClient.Invoke<string>("aria2.forceRemove", gid);
+                return await RpcClient.Invoke<string>("aria2.forceRemove", gid);
             }
         }
 
@@ -59,122 +59,122 @@ namespace AriaNet
         {
             if (!forcePause)
             {
-                return await SpookyClient.Invoke<string>("aria2.pause", gid);
+                return await RpcClient.Invoke<string>("aria2.pause", gid);
             }
             else
             {
-                return await SpookyClient.Invoke<string>("aria2.forcePause", gid);
+                return await RpcClient.Invoke<string>("aria2.forcePause", gid);
             }
         }
 
         public async Task<bool> PauseAllTasks()
         {
-            return (await SpookyClient.Invoke<string>("aria2.pauseAll")).Contains("OK");
+            return (await RpcClient.Invoke<string>("aria2.pauseAll")).Contains("OK");
         }
         
         public async Task<bool> UnpauseAllTasks()
         {
-            return (await SpookyClient.Invoke<string>("aria2.unpauseAll")).Contains("OK");
+            return (await RpcClient.Invoke<string>("aria2.unpauseAll")).Contains("OK");
         }
 
         public async Task<string> UnpauseTask(string gid)
         {
-            return await SpookyClient.Invoke<string>("aria2.unpause", gid);
+            return await RpcClient.Invoke<string>("aria2.unpause", gid);
         }
 
         public async Task<AriaStatus> GetStatus(string gid)
         {
-            return await SpookyClient.Invoke<AriaStatus>("aria2.tellStatus", gid);
+            return await RpcClient.Invoke<AriaStatus>("aria2.tellStatus", gid);
         }
 
         public async Task<AriaUri> GetUris(string gid)
         {
-            return await SpookyClient.Invoke<AriaUri>("aria2.getUris", gid);
+            return await RpcClient.Invoke<AriaUri>("aria2.getUris", gid);
         }
 
         public async Task<AriaFile> GetFiles(string gid)
         {
-            return await SpookyClient.Invoke<AriaFile>("aria2.getFiles", gid);
+            return await RpcClient.Invoke<AriaFile>("aria2.getFiles", gid);
         }
 
         public async Task<AriaTorrent> GetPeers(string gid)
         {
-            return await SpookyClient.Invoke<AriaTorrent>("aria2.getPeers", gid);
+            return await RpcClient.Invoke<AriaTorrent>("aria2.getPeers", gid);
         }
 
         public async Task<AriaServer> GetServers(string gid)
         {
-            return await SpookyClient.Invoke<AriaServer>("aria2.getServers", gid);
+            return await RpcClient.Invoke<AriaServer>("aria2.getServers", gid);
         }
         
         public async Task<AriaStatus> GetActiveStatus(string gid)
         {
-            return await SpookyClient.Invoke<AriaStatus>("aria2.tellActive", gid);
+            return await RpcClient.Invoke<AriaStatus>("aria2.tellActive", gid);
         }
         public async Task<AriaOption> GetOption(string gid)
         {
-            return await SpookyClient.Invoke<AriaOption>("aria2.getOption", gid);
+            return await RpcClient.Invoke<AriaOption>("aria2.getOption", gid);
         }
 
 
         public async Task<bool> ChangeOption(string gid, AriaOption option)
         {
-            return (await SpookyClient.Invoke<string>("aria2.changeOption", gid, option))
+            return (await RpcClient.Invoke<string>("aria2.changeOption", gid, option))
                 .Contains("OK");
         }
         
         public async Task<AriaOption> GetGlobalOption()
         {
-            return await SpookyClient.Invoke<AriaOption>("aria2.getGlobalOption");
+            return await RpcClient.Invoke<AriaOption>("aria2.getGlobalOption");
         }
         
         public async Task<bool> ChangeGlobalOption(AriaOption option)
         {
-            return (await SpookyClient.Invoke<string>("aria2.changeGlobalOption", option))
+            return (await RpcClient.Invoke<string>("aria2.changeGlobalOption", option))
                 .Contains("OK");
         }
 
         public async Task<AriaGlobalStatus> GetGlobalStatus()
         {
-            return await SpookyClient.Invoke<AriaGlobalStatus>("aria2.getGlobalStat");
+            return await RpcClient.Invoke<AriaGlobalStatus>("aria2.getGlobalStat");
         }
 
         public async Task<bool> PurgeDownloadResult()
         {
-            return (await SpookyClient.Invoke<string>("aria2.purgeDownloadResult")).Contains("OK");
+            return (await RpcClient.Invoke<string>("aria2.purgeDownloadResult")).Contains("OK");
         }
         
         public async Task<bool> RemoveDownloadResult(string gid)
         {
-            return (await SpookyClient.Invoke<string>("aria2.removeDownloadResult", gid))
+            return (await RpcClient.Invoke<string>("aria2.removeDownloadResult", gid))
                 .Contains("OK");
         }
 
         public async Task<AriaVersionInfo> GetVersion()
         {
-            return await SpookyClient.Invoke<AriaVersionInfo>("aria2.getVersion");
+            return await RpcClient.Invoke<AriaVersionInfo>("aria2.getVersion");
         }
         
         public async Task<AriaSession> GetSessionInfo()
         {
-            return await SpookyClient.Invoke<AriaSession>("aria2.getSessionInfo");
+            return await RpcClient.Invoke<AriaSession>("aria2.getSessionInfo");
         }
 
         public async Task<bool> Shutdown(bool forceShutdown = false)
         {
             if (!forceShutdown)
             {
-                return (await SpookyClient.Invoke<string>("aria2.shutdown")).Contains("OK");
+                return (await RpcClient.Invoke<string>("aria2.shutdown")).Contains("OK");
             }
             else
             {
-                return (await SpookyClient.Invoke<string>("aria2.forceShutdown")).Contains("OK");
+                return (await RpcClient.Invoke<string>("aria2.forceShutdown")).Contains("OK");
             }
         }
 
         public async Task<bool> SaveSession()
         {
-            return (await SpookyClient.Invoke<string>("aria2.saveSession")).Contains("OK");
+            return (await RpcClient.Invoke<string>("aria2.saveSession")).Contains("OK");
         }
     }
 }

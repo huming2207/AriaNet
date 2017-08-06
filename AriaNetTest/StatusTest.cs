@@ -6,17 +6,17 @@ namespace AriaNetTest
 {
     public class StatusTest
     {
-        private DownloadManager _downloadManager;
+        private AriaManager _ariaManager;
         
         public StatusTest()
         {
-            _downloadManager = new DownloadManager();    
+            _ariaManager = new AriaManager();    
         }
         
         [Fact]
         public void GlobalStatusTest()
         {
-            var result = _downloadManager.GetGlobalStatus().Result;
+            var result = _ariaManager.GetGlobalStatus().Result;
             Assert.NotNull(result);
             Assert.True(result.ActiveTaskCount >= 0);
         }
@@ -24,7 +24,7 @@ namespace AriaNetTest
         [Fact]
         public void SessionTest()
         {
-            var result = _downloadManager.GetSessionInfo().Result;
+            var result = _ariaManager.GetSessionInfo().Result;
             Assert.NotNull(result);
             Assert.True(result.SessionId.Length > 0);
         }
