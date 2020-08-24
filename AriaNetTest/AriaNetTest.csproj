@@ -7,7 +7,7 @@
     <PackageReference Include="Spooky" Version="1.0.0.3" />
     <PackageReference Include="Spooky.Json20" Version="1.0.0.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AriaNet\AriaNet.csproj" />
