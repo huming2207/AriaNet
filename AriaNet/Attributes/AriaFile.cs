@@ -22,6 +22,6 @@ namespace AriaNet.Attributes
         public string Selected { get; set; }
 
         [JsonProperty("uris")]
-        public List<Uri> Uris { get; set; }
+        public List<AriaUri> Uris { get; set; }
     }
 }
