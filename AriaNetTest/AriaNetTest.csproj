@@ -3,7 +3,7 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="Spooky" Version="1.0.0.3" />
     <PackageReference Include="Spooky.Json20" Version="1.0.0.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
